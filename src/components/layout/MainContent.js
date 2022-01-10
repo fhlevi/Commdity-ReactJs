@@ -2,16 +2,10 @@ import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import routePath from 'router/routes.js';
 
-const loading = (
-    <div>
-        Loading...
-    </div>
-)
-
 function MainContent() {
     return ( 
         <>
-            <Suspense fallback={loading}>
+            <Suspense>
                 <Switch>
                     {
                         routePath.map((route, index) => {

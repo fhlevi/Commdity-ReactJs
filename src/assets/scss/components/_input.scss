@@ -1,0 +1,27 @@
+.efishery-search{ 
+    .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+        padding: 10px;
+        font-size: 12px;
+    }
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        &:hover {
+            border: 1px solid #28b796 !important;
+        }
+        border: 1px solid #28b796 !important;
+    }
+}
+
+.efishery-form{ 
+    .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+        padding: 10px;
+        font-size: 12px;
+
+    }
+    
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        &:hover {
+            border: 1px solid #28b796 !important;
+        }
+        border: 1px solid #28b796 !important;
+    }
+}

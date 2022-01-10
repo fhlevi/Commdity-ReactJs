@@ -1,0 +1,35 @@
+.efishery-button{ 
+    text-transform: unset !important;
+    font-weight: 700 !important;
+
+    &.MuiButton-contained{
+        background-color: #28b796 !important;
+        border-radius: 0.4em;
+        font-size: 14px;
+        align-items: center;
+        
+        &:hover{
+            background-color: #28b796;
+        }
+    }
+
+    &.small-button{
+        font-size: 14px !important;
+        max-height: 36px !important;
+        padding: 10px 24px !important;
+    }
+
+    &.medium-button{
+        height: 44px !important;
+        padding: 14px 24px !important;
+    }
+
+    &.button-block{
+        height: 44px !important;
+    }
+
+    &.btn-white {
+        color: #000000;
+        
+    }
+}

@@ -1,0 +1,14 @@
+.efishery-table {
+    &.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1 {
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,.12) !important;
+    }
+
+    th {
+        &.MuiTableCell-root.MuiTableCell-head {
+            background-color: #f5f5f5;
+            font-weight: 600;
+            font-size: 12px;
+            color: #00000099;
+        }
+    }
+}
