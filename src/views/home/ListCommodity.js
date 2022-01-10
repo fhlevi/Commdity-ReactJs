@@ -83,7 +83,7 @@ export default function ListCommodity(props) {
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
-                        <TableRow style={{ backgroundColor: 'red' }}>
+                        <TableRow>
                         {columns.map((column) => (
                             <TableCell
                                 key={column.id}
