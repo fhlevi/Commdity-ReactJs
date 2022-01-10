@@ -1,10 +1,13 @@
-import BaseDialog from 'components/dialog/BaseDialog';
 import React from 'react';
-import { Button, FormControl, OutlinedInput, Grid } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Box } from '@mui/system';
-import ApiKomoditas from 'api/Komoditas';
 import { v4 as uuid } from 'uuid'
+// api
+import ApiKomoditas from 'api/Komoditas';
+// components
+import BaseDialog from 'components/dialog/BaseDialog';
+import FormInput from 'components/input/FormInput';
+import FormSelect from 'components/input/FormSelect';
 
 class DialogAddCommodity extends React.Component {
     constructor(props) {
@@ -13,6 +16,10 @@ class DialogAddCommodity extends React.Component {
         this.handleCloseLocal = this.handleCloseLocal.bind(this)
         this.saveData = this.saveData.bind(this)
         this.clearDataOnState = this.clearDataOnState.bind(this)
+        this.getDataSizes = this.getDataSizes.bind(this)
+        this.handleSelectSize = this.handleSelectSize.bind(this)
+        this.handleSelectCity = this.handleSelectCity.bind(this)
+        this.getDataCities = this.getDataCities.bind(this)
 
         this.state = {
             isDialogLocal: false,
@@ -23,15 +30,41 @@ class DialogAddCommodity extends React.Component {
                 area_provinsi: null,
                 size: 0
             },
+            listSize: [],
+            listCity: [],
             komoditasModel: null,
             isLoading: false
         }
     }
 
-    handleCloseLocal () {
+    handleCloseLocal() {
         this.setState({ isDialogLocal: false })
         this.props.close(false)
         this.clearDataOnState()
+    }
+
+    async getDataSizes() {
+        try {
+            const result = await this.state.komoditasModel.getDataSize()
+
+            this.setState({ 
+                listSize: result
+            })
+        } catch(e) {
+            console.log("🚀 ~ file: DialogAddCommodity.js ~ DialogAddCommodity ~ getDataSize ~ e", e)
+        }
+    }
+
+    async getDataCities() {
+        try {
+            const result = await this.state.komoditasModel.getDataCity()
+
+            this.setState({ 
+                listCity: result
+            })
+        } catch(e) {
+            console.log("🚀 ~ file: DialogAddCommodity.js ~ DialogAddCommodity ~ getDataSize ~ e", e)
+        }
     }
 
     handleInput(event) {
@@ -72,12 +105,39 @@ class DialogAddCommodity extends React.Component {
         })
     }
 
-    componentDidMount() {
+    handleSelectSize(value) {
+        this.setState({
+            commodity: {
+                ...this.state.commodity,
+                size: value.size
+            }
+        })
+    }
+
+    handleSelectCity(value) {
+        this.setState({
+            commodity: {
+                ...this.state.commodity,
+                area_kota: value.city,
+                area_provinsi: value.province,
+            }
+        })
+    }
+
+    initialModel() {
         let apiCommodity = new ApiKomoditas()
         
         this.setState({ 
             komoditasModel: apiCommodity
         })
+
+        return Promise.resolve(true)
+    }
+
+    async componentDidMount() {
+        await this.initialModel()
+        this.getDataSizes()
+        this.getDataCities()
     }
 
     static getDerivedStateFromProps(props) {
@@ -113,25 +173,6 @@ class DialogAddCommodity extends React.Component {
             )
         }
 
-        const FormInput = (props) => {
-            return (
-                <>
-                    <Grid sm={4} xs={12} item sx={{ fontWeight: 600 }}>{props.name}</Grid>
-                    <Grid sm={8} xs={12} item>
-                        <FormControl sx={{ my: 1, width: '100%' }} variant="outlined">
-                            <OutlinedInput
-                                type="text"
-                                name={props.name.toLowerCase()}
-                                className="efishery-form"
-                                placeholder={props.placeholder ? props.placeholder : ''}
-                                onChange={props.change}
-                            />
-                        </FormControl>
-                    </Grid>
-                </>
-            )
-        }
-
         return (
             <>
                 <BaseDialog 
@@ -154,6 +195,16 @@ class DialogAddCommodity extends React.Component {
                         <FormInput 
                             name="Price"
                             change={this.handleInput}
+                        />
+                        <FormSelect 
+                            name="Size"
+                            items={this.state.listSize}
+                            change={this.handleSelectSize}
+                        />
+                        <FormSelect 
+                            name="Kota"
+                            items={this.state.listCity}
+                            change={this.handleSelectCity}
                         />
                     </Box>
                 </BaseDialog>  

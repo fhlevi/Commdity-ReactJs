@@ -92,11 +92,11 @@ function HomeScreen() {
     }, [])
 
     React.useEffect(() => {
-        const getData = async () => {
-            if(!!commodityModel) {
+        async function getData() {
+            if(commodityModel && !isDialog) {
                 try {
                     const result = await commodityModel.getDataKomoditas()
-
+    
                     setListData(result)
                     setDataSearch(result)
                 } catch(e) {
@@ -106,7 +106,7 @@ function HomeScreen() {
         }
 
         getData()
-    }, [commodityModel])
+    }, [commodityModel, isDialog])
 
     return ( 
         <>
@@ -141,7 +141,7 @@ function HomeScreen() {
                         />
                     </FormControl>
                 </Box>
-                <Grid xs={12} item>
+                <Grid xs={12} sx={{ mt:2 }} item>
                     <ListCommodity 
                         items={listData}
                     />

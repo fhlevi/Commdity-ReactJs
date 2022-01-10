@@ -8,6 +8,14 @@ class Komoditas extends Stein {
     getDataKomoditas() {
         return this.Stein.read('list')
     }
+
+    getDataSize() {
+        return this.Stein.read('option_size')
+    }
+
+    getDataCity() {
+        return this.Stein.read('option_area')
+    }
 }
 
 export default Komoditas;
