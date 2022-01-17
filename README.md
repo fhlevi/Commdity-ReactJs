@@ -1,4 +1,4 @@
-# commodity-react
+# Project ReactJs
 
 ## Project setup
 ```
