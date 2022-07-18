@@ -20,8 +20,6 @@ Commodities list is an application to input data commodities
 * [`react-router-dom`](https://github.com/remix-run/react-router)
 * [`react-redux`](https://react-redux.js.org/)
 * [`Axios`](https://github.com/axios/axios)
-* [`moment-timezone`](https://momentjs.com/timezone/)
-* [`animated-number-react`](https://www.npmjs.com/package/animated-number-react)
 * [`node-sass`](https://github.com/sass/node-sass)
 * [`material-ui`](https://mui.com/)
 
